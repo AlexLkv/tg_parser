@@ -8,7 +8,7 @@ from aiogram import Bot, types, Dispatcher
 from bs4 import BeautifulSoup
 # '1794340301:AAHzJg9XNv8iQ7_VXuV9DmodsnivyJkM6Pw'
 API_TOKEN = '5419808022:AAHllPCwbi4QgWTFUX-BQWSIgYzD6fcuHqI'
-CHANNEL_ID = '-1001770843028'
+CHANNEL_ID = '-1001543321593'
 
 bot = Bot(token=API_TOKEN, parse_mode=types.ParseMode.HTML)
 dp = Dispatcher(bot)
@@ -69,35 +69,42 @@ while True:
         global last_lepa, last_fourch, last_a
 
         txt, file, typee = pars(ur_lepa)
-        if '@newpostkostibot' not in txt and 'https' not in txt and 'подпи' not in txt and 't.me' not in txt:
-            if typee == "vid":
-                await bot.send_video(CHANNEL_ID, video=file, caption="#новости \n\n" + txt.replace('@lepatg', '@inoshapotyan'))
-            elif typee == "img":
-                await bot.send_photo(CHANNEL_ID, photo=file, caption="#новости \n\n" + txt.replace('@lepatg', '@inoshapotyan'))
+        if '@newpostkostibot' not in txt :
+            if 'https' not in txt and 'подпи' not in txt and 't.me' not in txt:
+                if typee == "vid":
+                    await bot.send_video(CHANNEL_ID, video=file, caption="#новости \n\n" + txt.replace('@lepatg', '@inoshapotyan'))
+                elif typee == "img":
+                    await bot.send_photo(CHANNEL_ID, photo=file, caption="#новости \n\n" + txt.replace('@lepatg', '@inoshapotyan'))
+                else:
+                    await bot.send_message(CHANNEL_ID, "#новости \n\n" + txt.replace('@lepatg', '@inoshapotyan'))
+                last_lepa += 1
             else:
-                await bot.send_message(CHANNEL_ID, "#новости \n\n" + txt.replace('@lepatg', '@inoshapotyan'))
-            last_lepa += 1
+                last_lepa += 1
 
         txt, file, typee = pars(ur_fourch)
-        if 'ttcreator.net' not in txt and 'https' not in txt and 'подпи' not in txt and 't.me' not in txt:
-            if typee == "vid":
-                await bot.send_video(CHANNEL_ID, video=file, caption="#юмор \n\n" + txt.replace('why4channel 🌈', '@inoshapotyan'))
-            elif typee == "img":
-                await bot.send_photo(CHANNEL_ID, photo=file, caption="#юмор \n\n" + txt.replace('why4channel 🌈', '@inoshapotyan'))
+        if 'ttcreator.net' not in txt:
+            if 'https' not in txt and 'подпи' not in txt and 't.me' not in txt:
+                if typee == "vid":
+                    await bot.send_video(CHANNEL_ID, video=file, caption="#юмор \n\n" + txt.replace('why4channel 🌈', '@inoshapotyan'))
+                elif typee == "img":
+                    await bot.send_photo(CHANNEL_ID, photo=file, caption="#юмор \n\n" + txt.replace('why4channel 🌈', '@inoshapotyan'))
+                else:
+                    await bot.send_message(CHANNEL_ID, "#юмор \n\n" + txt.replace('why4channel 🌈', '@inoshapotyan'))
+                last_fourch += 1
             else:
-                await bot.send_message(CHANNEL_ID, "#юмор \n\n" + txt.replace('why4channel 🌈', '@inoshapotyan'))
-            last_fourch += 1
-
+                last_fourch += 1
         txt, file, typee = pars(ur_a)
-        if '@conhum_bot' not in txt and 'https' not in txt and 'подпи' not in txt and 't.me' not in txt:
-            if typee == "vid":
-                await bot.send_video(CHANNEL_ID, video=file, caption="#it_юмор \n\n" + txt +'\n' + '@inoshapotyan')
-            elif typee == "img":
-                await bot.send_photo(CHANNEL_ID, photo=file, caption="#it_юмор \n\n" + txt +'\n' + '@inoshapotyan')
+        if '@conhum_bot' not in txt:
+            if 'https' not in txt and 'подпи' not in txt and 't.me' not in txt:
+                if typee == "vid":
+                    await bot.send_video(CHANNEL_ID, video=file, caption="#it_юмор \n\n" + txt +'\n' + '@inoshapotyan')
+                elif typee == "img":
+                    await bot.send_photo(CHANNEL_ID, photo=file, caption="#it_юмор \n\n" + txt +'\n' + '@inoshapotyan')
+                else:
+                    await bot.send_message(CHANNEL_ID, "#юмор \n\n" + txt +'\n' + '@inoshapotyan')
+                last_a += 1
             else:
-                await bot.send_message(CHANNEL_ID, "#юмор \n\n" + txt +'\n' + '@inoshapotyan')
-            last_a += 1
-
+                last_a += 1
 
 
     loop = asyncio.get_event_loop()
