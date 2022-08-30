@@ -1,19 +1,9 @@
-import requests
-import results as results
-from bs4 import BeautifulSoup
+from datetime import datetime
+from threading import Thread
+from time import sleep
 
+from telebot import TeleBot, types
 
-
-def pars(url):
-
-
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'lxml')
-
-    x = soup.find("a", class_="tgme_widget_message_photo_wrap")
-    l = soup.find("meta", property="og:image")
-    return x["content"], l["content"]
-response = requests.get('https://t.me/lopppppaq/23?embed=1&mode=tme')
-soup = BeautifulSoup(response.text, 'lxml')
-# print(soup.find("video").get('src'))
-print((soup.find('a', "tgme_widget_message_photo_wrap").get("style").split("'")[1]))
+token = '1794340301:AAHzJg9XNv8iQ7_VXuV9DmodsnivyJkM6Pw'
+channel = '@lopppppaq'
+bot = TeleBot(token=token)
